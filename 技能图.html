@@ -1,0 +1,77 @@
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>技能图</title>
+<script src="https://fastly.jsdelivr.net/npm/echarts@5.3.3/dist/echarts.min.js"></script>
+</head>
+<boby>
+<div class="chart-container" id="chart-container"></div>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+}
+#chart-container {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+</style>
+</boby>
+<script>
+var dom = document.getElementById('chart-container');
+var myChart = echarts.init(dom, null, {
+  renderer: 'canvas',
+  useDirtyRect: false
+});
+var app = {};
+
+var option;
+
+option = {
+  title: {
+    text: '技能图',
+    backgroundColor:'#c23531',
+   top:20,
+left:'center'
+  },
+  legend: {
+    data: ['Allocated Budget', 'Actual Spending']
+  },
+  radar: {
+    // shape: 'circle',
+    indicator: [
+      { name: 'React', max: 6500 },
+      { name: 'Vue', max: 16000 },
+      { name: 'Angulay', max: 30000 },
+      { name: 'Taro', max: 38000 },
+      { name: 'C++', max: 52000 },
+      { name: 'Python', max: 25000 },
+      { name: '李宁波NP666' , max: 2560}
+    ]
+  },
+  series: [
+    {
+      name: 'Budget vs spending',
+      type: 'radar',
+      data: [
+        {
+          value: [4200, 3000, 20000, 35000, 50000, 18000],
+          name: 'Allocated Budget'
+        },
+        {
+          value: [5000, 14000, 28000, 26000, 42000, 21000],
+          name: 'Actual Spending'
+        }
+      ]
+    }
+  ]
+};
+
+if (option && typeof option === 'object') {
+  myChart.setOption(option);
+}
+
+window.addEventListener('resize', myChart.resize);
+</script>
+</html>
